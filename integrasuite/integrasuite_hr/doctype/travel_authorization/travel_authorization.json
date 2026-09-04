@@ -1,0 +1,405 @@
+{
+ "actions": [],
+ "autoname": "TA-.YY.-.MM.-.####",
+ "creation": "2025-01-09 23:16:04.777280",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_information_section",
+  "employee",
+  "employee_name",
+  "column_break_djsx",
+  "posting_date",
+  "branch",
+  "cost_center",
+  "currency_section",
+  "currency",
+  "column_break_ahsz",
+  "exchange_rate",
+  "section_break_qlai",
+  "travel_type",
+  "column_break_djfc",
+  "purpose_of_travel",
+  "column_break_xlsv",
+  "mode_of_travel",
+  "vehicle_number",
+  "section_break_tvvk",
+  "items",
+  "section_break_xebq",
+  "need_advance",
+  "column_break_fnha",
+  "estimated_amount",
+  "advance_amount",
+  "extra_travel_allowance",
+  "approver_detial_section",
+  "approver",
+  "reports_to",
+  "column_break_aysp",
+  "approver_name",
+  "reports_to_name",
+  "column_break_esiv",
+  "approver_designation",
+  "journal_entry",
+  "additional_information_section",
+  "company",
+  "status",
+  "column_break_stkr",
+  "workflow_state",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_djsx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Branch",
+   "options": "Branch",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "branch.cost_center",
+   "fieldname": "cost_center",
+   "fieldtype": "Data",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "column_break_stkr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_tvvk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Travel Itinerary",
+   "options": "Travel Authorization Item"
+  },
+  {
+   "fieldname": "section_break_qlai",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "purpose_of_travel",
+   "fieldtype": "Link",
+   "label": "Purpose of Travel",
+   "options": "Purpose of Travel",
+   "reqd": 1
+  },
+  {
+   "depends_on": "currency",
+   "description": "Rate at which currency is converted to company's base currency",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate"
+  },
+  {
+   "fieldname": "additional_information_section",
+   "fieldtype": "Section Break",
+   "label": "Additional Information"
+  },
+  {
+   "fieldname": "travel_type",
+   "fieldtype": "Select",
+   "label": "Travel Type",
+   "options": "\nDomestic\nInternational",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_djfc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_xlsv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_of_travel",
+   "fieldtype": "Select",
+   "label": "Mode of Travel",
+   "options": "\nOffice Car\nPersonal Car\nPublic Transport\nFlight",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_information_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Information"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Draft\nSubmitted\nClaimed\nCancelled",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "currency_section",
+   "fieldtype": "Section Break",
+   "label": "Currency"
+  },
+  {
+   "fieldname": "column_break_ahsz",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_detial_section",
+   "fieldtype": "Section Break",
+   "label": "Approver Detial"
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "ignore_user_permissions": 1,
+   "label": "Approver",
+   "no_copy": 1,
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_aysp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "approver.full_name",
+   "fieldname": "approver_name",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Approver Name",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_esiv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_designation",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Approver Designation",
+   "no_copy": 1,
+   "options": "Designation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reports_to",
+   "fieldtype": "Link",
+   "ignore_user_permissions": 1,
+   "label": "Reports to",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "reports_to.full_name",
+   "fieldname": "reports_to_name",
+   "fieldtype": "Data",
+   "label": "Reports to Name"
+  },
+  {
+   "depends_on": "eval:doc.mode_of_travel==\"Office Car\"",
+   "fetch_from": "vehicle.vehicle_no",
+   "fieldname": "vehicle_number",
+   "fieldtype": "Link",
+   "label": "Vehicle Number",
+   "mandatory_depends_on": "eval:doc.mode_of_travel==\"Office Car\"",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "section_break_xebq",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "need_advance",
+   "fieldtype": "Check",
+   "label": "Need Advance"
+  },
+  {
+   "fieldname": "column_break_fnha",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.need_advance",
+   "fieldname": "estimated_amount",
+   "fieldtype": "Currency",
+   "label": "Estimated Amount"
+  },
+  {
+   "depends_on": "eval:doc.need_advance",
+   "fieldname": "advance_amount",
+   "fieldtype": "Currency",
+   "label": "Advance Amount"
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Journal Entry",
+   "options": "Journal Entry",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "Travel Authorization"
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "options": "Travel Authorization"
+  },
+  {
+   "depends_on": "eval:doc.need_advance && doc.travel_type === 'International'\n",
+   "fieldname": "extra_travel_allowance",
+   "fieldtype": "Currency",
+   "label": "Incidental Claim"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-04 20:32:41.544215",
+ "modified_by": "Administrator",
+ "module": "Integrasuite HR",
+ "name": "Travel Authorization",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Verifier",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Approver",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
