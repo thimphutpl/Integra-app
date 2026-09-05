@@ -1,0 +1,67 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-01 14:42:39.590238",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "workflow_state",
+  "type",
+  "approver_field_name",
+  "department_approver_field_name",
+  "custom_approver"
+ ],
+ "fields": [
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Workflow State"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "\nIs Owner\nIs Approver\nIs Department Approver\nIs Custom Approver"
+  },
+  {
+   "depends_on": "eval:doc.type=='Is Approver'",
+   "fieldname": "approver_field_name",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Approver Field Name",
+   "mandatory_depends_on": "eval:doc.type=='Is Approver'"
+  },
+  {
+   "depends_on": "eval:doc.type=='Is Department Approver'",
+   "fieldname": "department_approver_field_name",
+   "fieldtype": "Select",
+   "label": "Department Approver Field Name",
+   "mandatory_depends_on": "eval:doc.type=='Is Department Approver'"
+  },
+  {
+   "depends_on": "eval:doc.type=='Is Custom Approver'",
+   "fieldname": "custom_approver",
+   "fieldtype": "Data",
+   "label": "Custom Approver",
+   "mandatory_depends_on": "eval:doc.type=='Is Custom Approver'"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-05 14:23:03.326369",
+ "modified_by": "Administrator",
+ "module": "Integrasuite HR",
+ "name": "Workflow State Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

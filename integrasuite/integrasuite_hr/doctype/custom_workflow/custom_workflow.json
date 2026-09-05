@@ -1,0 +1,76 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:doctype_link",
+ "creation": "2026-05-01 14:22:38.102703",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_2dox",
+  "doctype_link",
+  "get_workflow_state",
+  "amended_from",
+  "items"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_2dox",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "doctype_link",
+   "fieldtype": "Link",
+   "label": "Doctype Link",
+   "options": "DocType",
+   "unique": 1
+  },
+  {
+   "fieldname": "get_workflow_state",
+   "fieldtype": "Button",
+   "label": "Get Workflow State"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Custom Workflow",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "options": "Workflow State Item"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-05 14:10:10.317511",
+ "modified_by": "Administrator",
+ "module": "Integrasuite HR",
+ "name": "Custom Workflow",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
