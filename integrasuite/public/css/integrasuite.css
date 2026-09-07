@@ -1,0 +1,38 @@
+/* Integra HR - show 4 child icons in Desktop folder preview */
+.desktop-icon[data-id="Integra HR"] > .icon-container > .icons-container > .icons {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+
+    gap: 4px !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    align-items: center !important;
+    justify-items: center !important;
+}
+
+/* Make the 4 mini icons fit nicely */
+.desktop-icon[data-id="Integra HR"]
+    > .icon-container
+    > .icons-containers
+    > .icons
+    > .desktop-icon {
+
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide child text inside the tiny parent preview */
+.desktop-icon[data-id="Integra HR"]
+    > .icon-container
+    > .icons-container
+    .icon-caption {
+
+    display: none !important;
+}

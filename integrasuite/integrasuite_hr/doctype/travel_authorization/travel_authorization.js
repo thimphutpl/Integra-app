@@ -3,12 +3,18 @@
 
 frappe.ui.form.on("Travel Authorization", {
 	setup: function (frm) {
-		frm.set_query("employee", function () {
-			return {
-				filters: {
-					status: "Active",
-				},
-			};
+		if (frappe.session.user === "Administrator") {
+            return;
+        }
+		
+        frm.set_query("employee", function () {
+            return {
+                filters: {
+                    user_id: frappe.session.user,
+                    status: "Active"
+                }
+            };
+       
 		});
 		// frm.set_query("employee", erpnext.queries.employee);
 	},
