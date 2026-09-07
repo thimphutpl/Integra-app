@@ -1,0 +1,27 @@
+<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="54" height="54" rx="11.5" fill="#12B892"/>
+
+  <!-- Receipt -->
+  <path d="M15 11.8H33.6C35.7 11.8 37.4 13.5 37.4 15.6V18.4"
+        stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15 11.8V38.0L17.8 35.9L20.6 38.0L23.4 35.9L26.2 38.0L29.0 35.9L31.8 38.0"
+        stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M33.6 11.8V17.9H37.4"
+        stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Receipt details -->
+  <path d="M19.2 18.2H28.2" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M19.2 22.7H26.2" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
+  <path d="M19.2 27.1H23.6" stroke="white" stroke-width="2.3" stroke-linecap="round"/>
+  <text x="19.2" y="33.7" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="5.7" font-weight="700">Nu</text>
+
+  <!-- Airplane, deliberately spaced from receipt details -->
+  <path d="M29.2 29.8L34.3 24.7C35.4 23.6 37.1 23.5 38.3 24.4L40.8 26.2C42.1 27.1 42.2 28.9 41.1 30.0L36.0 35.1"
+        stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M29.2 29.8L34.7 30.9L39.3 26.3"
+        stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M36.0 35.1L34.9 29.6L30.3 34.2"
+        stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M28.2 33.8L27.4 36.1C27.3 36.4 27.6 36.7 27.9 36.6L30.2 35.8L28.2 33.8Z" fill="white"/>
+</svg>

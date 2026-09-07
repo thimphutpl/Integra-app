@@ -1,9 +1,24 @@
 app_name = "integrasuite"
-app_title = "intergrasuite"
+app_title = "Integra HR"
 app_publisher = "pemanorbu132@gmail.com"
-app_description = "intergrasuite"
+app_description = "Integra HR"
 app_email = "pemanorbu132@gmail.com"
 app_license = "mit"
+
+app_include_css = "/assets/integrasuite/css/integrasuite.css"
+
+app_logo_url = "/assets/integrasuite/images/integra_hr_bold_v2.svg"
+
+add_to_apps_screen = [
+    {
+        "name": "integrasuite",
+        "logo": "/assets/integrasuite/images/integra_hr_bold_v2.svg",
+        "title": "Integra HR",
+        "route": "/desk/employee",
+        "sequence_id": 3,
+    }
+]
+
 
 # Apps
 # ------------------

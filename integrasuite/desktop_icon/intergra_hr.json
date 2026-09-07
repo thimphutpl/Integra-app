@@ -1,0 +1,21 @@
+{
+ "app": "integrasuite",
+ "bg_color": "gray",
+ "creation": "2026-09-05 17:09:44.761727",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_type": "Link",
+ "idx": 0,
+ "label": "Intergra HR",
+ "link": "/desk/people",
+ "link_type": "External",
+ "logo_url": "/assets/integrasuite/images/integra_hr.svg",
+ "modified": "2026-09-05 20:13:29.175420",
+ "modified_by": "Administrator",
+ "name": "Intergra HR",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [],
+ "standard": 1
+}
