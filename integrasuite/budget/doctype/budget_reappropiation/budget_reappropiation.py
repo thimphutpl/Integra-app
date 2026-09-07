@@ -126,7 +126,7 @@ class BudgetReappropiation(Document):
 					if cancel:
 						total = flt(from_budget_account.budget_amount) + flt(d.amount)
 						budget_sent = flt(from_budget_account.budget_sent) - flt(d.amount)
-					# added By Rinzin
+					# add the amount to budget sent
 					from_budget_account.db_set("budget_sent", flt(budget_sent,2))
 					if monthly_budget_check:
 						if from_month:
