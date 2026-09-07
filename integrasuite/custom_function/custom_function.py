@@ -17,6 +17,8 @@ def get_workflow_state(doctype):
 
 @frappe.whitelist()
 def get_reports_to_or_approver(doctype):
+    if not doctype:
+        return[]
     fields = frappe.db.sql("""
         SELECT fieldname 
         FROM `tabDocField` 

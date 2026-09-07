@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 import frappe
 from frappe.model.document import Document
-
+from integrasuite.integrasuite_hr.doctype.custom_notification.custom_notification import notification_status,notification_approver
 
 class CustomWorkflow(Document):
 	pass
@@ -14,32 +14,42 @@ def custom_validate_workflow(doc):
     # Fetch workflow items for the given doctype
     
     items = frappe.db.sql("""
-        SELECT workflow_state,type,approver_field_name,department_approver_field_name,custom_approver
+        SELECT workflow_state,type,approver_field_name,department_approver_field_name,custom_approver,send_email_field_name
         FROM `tabWorkflow State Item`
         WHERE parent = %s
     """, (doc.doctype,), as_dict=1)
 
     for item in items:
         if item.workflow_state == doc.workflow_state:
+            
             user = frappe.session.user
             #frappe.throw(str(user))
             # Owner-only rule
             if item.type=='Is Owner':
+                email_sender_field = item.send_email_field_name
+                email_sender= getattr(doc, email_sender_field, None)
+                if not email_sender:
+                    frappe.throw("set Email sender field custom work flow")
+                
+                #frappe.throw(str(email_sender))
                 if user != doc.owner:
                     frappe.throw(
                         f"Only {doc.owner} has permission to move to state '{doc.workflow_state}'"
                     )
 
+                notification_status(doc,email_sender)
+
             # Specific approver rule (user base)
             elif item.type=='Is Approver':
                 approver_field = item.approver_field_name
                 approver = getattr(doc, approver_field, None)
+                #frappe.throw(str(doc.owner))
                 if not approver:
                     frappe.throw("set Approver")
                 if user != approver:
                     frappe.throw(
-                        f"Only {approver} has permission to approve this document"
-		    )
+                        f"Only {approver} has permission to approve this document")
+                notification_approver(doc)
             elif item.type=='Is Department Approver':
                 deprt_approver_field=item.department_approver_field_name
                 department_approver=get_department_approver(deprt_approver_field,user)

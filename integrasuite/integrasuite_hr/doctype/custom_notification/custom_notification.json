@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:doctype_link",
+ "creation": "2026-09-06 13:01:15.564653",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "doctype_link",
+  "section_break_yvyz",
+  "status_template",
+  "column_break_imof",
+  "approver_template"
+ ],
+ "fields": [
+  {
+   "fieldname": "doctype_link",
+   "fieldtype": "Link",
+   "label": "Doctype Link",
+   "options": "DocType",
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_yvyz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "status_template",
+   "fieldtype": "Link",
+   "label": "Status Template",
+   "options": "Email Template"
+  },
+  {
+   "fieldname": "column_break_imof",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver_template",
+   "fieldtype": "Link",
+   "label": "Approver Template",
+   "options": "Email Template"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-06 13:12:42.390182",
+ "modified_by": "Administrator",
+ "module": "Integrasuite HR",
+ "name": "Custom Notification",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

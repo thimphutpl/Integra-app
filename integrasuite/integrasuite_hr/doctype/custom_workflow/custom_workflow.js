@@ -3,6 +3,7 @@
 
  frappe.ui.form.on("Custom Workflow", {
  	refresh(frm) {
+		if (frm.doc.doctype_link){
 		frappe.call({
 			            method: "integrasuite.custom_function.custom_function.get_reports_to_or_approver",
 			            args: { "doctype": frm.doc.doctype_link },
@@ -16,10 +17,16 @@
 			                        "options",
 			                        optionsWithBlank.join("\n")
 			                    );
+								 frm.fields_dict["items"].grid.update_docfield_property(
+			                        "send_email_field_name",
+			                        "options",
+			                        optionsWithBlank.join("\n")
+			                    );
 			                    frm.fields_dict["items"].grid.refresh();
 			                }
 			            }
 			        });
+				}
 		populateApproverOptions(frm, "department_approver_field_name");
  	},
 	get_workflow_state: function(frm) {
