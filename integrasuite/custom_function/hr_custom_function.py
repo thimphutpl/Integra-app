@@ -239,21 +239,21 @@ def get_date_diff(start_date, end_date):
 	else:	
 		return frappe.utils.data.date_diff(end_date, start_date) + 1
 
-# @frappe.whitelist()
-# def get_approver(employee):
-# 	deg=frappe.db.get_value("Employee", employee, "designation")
-# 	if not deg:
-# 		frappe.throw("Set designation in employee master")
-# 	if deg=='Chief Executive Officer':
+@frappe.whitelist()
+def get_approver(employee):
+	deg=frappe.db.get_value("Employee", employee, "designation")
+	if not deg:
+		frappe.throw("Set designation in employee master")
+	if deg=='Chief Executive Officer':
 
-# 		approver = frappe.db.get_value("Employee", employee, "user_id")
-# 		frappe.throw(str(approver))
-# 	else:
-# 		empid = frappe.db.get_value("Employee", employee, "reports_to")
-# 		approver = frappe.db.get_value("Employee", empid, "user_id")
+		approver = frappe.db.get_value("Employee", employee, "user_id")
+		frappe.throw(str(approver))
+	else:
+		empid = frappe.db.get_value("Employee", employee, "reports_to")
+		approver = frappe.db.get_value("Employee", empid, "user_id")
 
 
-# 	return approver
+	return approver
 
 
 @frappe.whitelist()

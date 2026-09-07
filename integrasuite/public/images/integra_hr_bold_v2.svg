@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Integra HR - bold clean person icon for ERPNext/Frappe -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="#12B886"/>
+
+  <!-- Bold head -->
+  <circle cx="256" cy="188" r="52" stroke="#FFFFFF" stroke-width="34"/>
+
+  <!-- Bold shoulders -->
+  <path d="M132 358 C164 302 208 274 256 274 C304 274 348 302 380 358"
+        stroke="#FFFFFF"
+        stroke-width="34"
+        stroke-linecap="round"
+        fill="none"/>
+</svg>
