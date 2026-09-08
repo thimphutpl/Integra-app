@@ -13,14 +13,18 @@ def notification_status(doc,email_sender):
 	
 	flag="status"
 	
+	
 	mail_template=get_email_template(doc,flag)
-	#frappe.throw(str(email_template))
+	
 	#frappe.throw("hii here--"+str(email_sender))
 	email_template = frappe.get_doc("Email Template", mail_template)
 
-	parent_doc = frappe.get_doc(doc.doctype, doc.name)
-	args = parent_doc.as_dict()
+	#parent_doc = frappe.get_doc(doc.doctype, doc.name)
+	args = doc.as_dict()
 	message = frappe.render_template(email_template.response, args)
+	#frappe.throw(str(message))
+	#frappe.throw(str(parent_doc.get("workflow_state")))
+	#frappe.throw(str(doc.workflow_state))
 
 	recipients = email_sender
 	
@@ -36,9 +40,9 @@ def notification_approver(doc):
 
 	mail_template=get_email_template(doc,flag)
 	email_template = frappe.get_doc("Email Template",mail_template)
-	
-	parent_doc = frappe.get_doc(doc.doctype, doc.name)
-	args = parent_doc.as_dict()
+
+	#parent_doc = frappe.get_doc(doc.doctype, doc.name)
+	args = doc.as_dict()
 	message = frappe.render_template(email_template.response, args)
 	recipients = doc.owner
 	subject = email_template.subject
