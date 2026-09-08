@@ -1,11 +1,10 @@
-// Copyright (c) 2024, Frappe Technologies Pvt. Ltd. and contributors
+// Copyright (c) 2016, Frappe Technologies Pvt. Ltd. and contributors
 // For license information, please see license.txt
 
 frappe.ui.form.on('Leave Travel Concession', {
 	setup: function(frm) {
 		frm.get_docfield("items").allow_bulk_edit = 1;
 	},
-
 	refresh: function(frm) {
 		if(!frm.doc.posting_date) {
 			frm.set_value("posting_date", get_today())
@@ -45,7 +44,7 @@ frappe.ui.form.on('Leave Travel Concession', {
 
 function process_ltc(branch) {
 	frappe.call({
-		method: "hrms.hr.doctype.leave_travel_concession.leave_travel_concession.get_ltc_details",
+		method: "integrasuite.integrasuite_hr.doctype.leave_travel_concession.leave_travel_concession.get_ltc_details",
 		args: {"branch": branch},
 		callback: function(r) {
 			if(r.message) {
@@ -84,5 +83,3 @@ frappe.ui.form.on("LTC Details", "amount", function(frm, cdt, cdn) {
 	})
 	cur_frm.set_value("total_amount", total)
 })
-
-

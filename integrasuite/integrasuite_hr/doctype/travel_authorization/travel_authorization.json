@@ -314,7 +314,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-05 17:31:38.040013",
+ "modified": "2026-09-07 14:53:45.837046",
  "modified_by": "Administrator",
  "module": "Integrasuite HR",
  "name": "Travel Authorization",
@@ -330,6 +330,7 @@
    "report": 1,
    "role": "Employee",
    "share": 1,
+   "submit": 1,
    "write": 1
   },
   {

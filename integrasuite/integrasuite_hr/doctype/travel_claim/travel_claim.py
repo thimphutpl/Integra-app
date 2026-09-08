@@ -25,9 +25,9 @@ from frappe.utils import (
 
 class TravelClaim(Document):
 	def validate(self):
-		self.get_advance()
+		#self.get_advance()
 		self.calculate_amount()
-		validate_workflow_states(self)
+		# validate_workflow_states(self)
 		# if self.workflow_state not in ("Approved","Cancelled"):
 		# 	notify_workflow_states(self)
 
@@ -117,33 +117,33 @@ class TravelClaim(Document):
 		# Recalculate amount based on updated DSA and number of days
 		item.amount = flt(item.no_of_days) * flt(item.dsa)
 
-	def get_advance(self):
-		self.set("advances", [])
+	# def get_advance(self):
+	# 	self.set("advances", [])
 
-		Advance = frappe.qb.DocType("Travel Advance")
+	# 	Advance = frappe.qb.DocType("Travel Advance")
 
-		query = (
-			frappe.qb.from_(Advance)
-			.select(
-				Advance.name.as_("reference_name"),
-				Advance.paid_amount.as_("advance_amount"),
-				Advance.posting_date,
-			)
-			.where(
-				(Advance.docstatus == 1)
-				& (Advance.paid_amount > 0)
-				& (Advance.travel_authorization == self.travel_authorization)
-				& (Advance.employee == self.employee)
-				& (Advance.company == self.company)
-			)
-		)
+	# 	query = (
+	# 		frappe.qb.from_(Advance)
+	# 		.select(
+	# 			Advance.name.as_("reference_name"),
+	# 			Advance.paid_amount.as_("advance_amount"),
+	# 			Advance.posting_date,
+	# 		)
+	# 		.where(
+	# 			(Advance.docstatus == 1)
+	# 			& (Advance.paid_amount > 0)
+	# 			& (Advance.travel_authorization == self.travel_authorization)
+	# 			& (Advance.employee == self.employee)
+	# 			& (Advance.company == self.company)
+	# 		)
+	# 	)
 
-		advances = query.run(as_dict=True)
+	# 	advances = query.run(as_dict=True)
 
-		if not advances:
-			frappe.msgprint("No approved advances found for this request.", alert=True)
+	# 	if not advances:
+	# 		frappe.msgprint("No approved advances found for this request.", alert=True)
 
-		self.set("advances", advances)
+	# 	self.set("advances", advances)
 
 	def post_journal_entry(self):
 		# if flt(self.advance_amount) > 0 and flt(self.net_amount == 0):

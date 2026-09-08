@@ -52,3 +52,5 @@ def get_bank_account(branch=None):
 	if not expense_bank_account and not default_bank_account:
 		frappe.throw(_("Please set <b>Bank Expense Account</b> under <b>Branch</b> master"))
 	return expense_bank_account if expense_bank_account else default_bank_account
+
+	
