@@ -37,7 +37,7 @@ def notification_approver(doc):
 	#frappe.throw("doc--"+str(doc.doctype))
 
 	flag="approver"
-
+ ##
 	mail_template=get_email_template(doc,flag)
 	email_template = frappe.get_doc("Email Template",mail_template)
 
