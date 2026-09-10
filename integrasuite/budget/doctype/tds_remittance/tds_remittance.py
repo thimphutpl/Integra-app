@@ -126,6 +126,7 @@ def get_tds_invoices(tax_withholding_category, from_date, to_date, name, filter_
 		accounts_cond_ti = 'and t1.account in ({})'.format('"' + '","'.join(accounts) + '"')
 		accounts_cond_eme = 'and t.tds_account in ({})'.format('"' + '","'.join(accounts) + '"')
 
+
 	if filter_existing:
 		existing_cond = _get_existing_cond()
 
