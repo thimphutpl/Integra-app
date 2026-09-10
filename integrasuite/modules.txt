@@ -1,7 +1,4 @@
 intergrasuite
 Integrasuite HR
-<<<<<<< HEAD
 Budget
-=======
 eNote
->>>>>>> f0a3adb521278a614dbcad6c5b2267fb77742c16
