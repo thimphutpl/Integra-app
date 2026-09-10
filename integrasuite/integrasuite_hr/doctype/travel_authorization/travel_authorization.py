@@ -416,8 +416,7 @@ def get_permission_query_conditions(user):
 	if "Approver" in user_roles:
 		conditions += f"""
 			OR
-			(`tabTravel Authorization`.reports_to = '{user}'
-			 AND `tabTravel Authorization`.workflow_state = 'Waiting For Approval')
+			(`tabTravel Authorization`.reports_to = '{user}')
 		"""
 	conditions += ")"
 
