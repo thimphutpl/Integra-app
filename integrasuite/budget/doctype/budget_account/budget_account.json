@@ -26,8 +26,6 @@
   "october",
   "november",
   "december",
-  "section_break_apod",
-  "budget_allocate",
   "budget_detail_section_section",
   "initial_budget",
   "column_break_24",
@@ -491,21 +489,11 @@
    "fieldtype": "Data",
    "label": "Budget Sent December",
    "read_only": 1
-  },
-  {
-   "fieldname": "section_break_apod",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "budget_allocate",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Budget Amount"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2026-09-04 20:13:26.565743",
+ "modified": "2026-09-10 19:52:33.009279",
  "modified_by": "Administrator",
  "module": "Budget",
  "name": "Budget Account",
