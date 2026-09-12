@@ -119,34 +119,87 @@ class LeaveTravelConcession(Document):
 		start, end = fiscal_year_dates
 		
 		query = "select e.date_of_joining, b.employee, b.employee_name, b.branch, a.amount, e.bank_name, e.bank_ac_no  from `tabSalary Detail` a, `tabSalary Structure` b, tabEmployee e where a.parent = b.name and b.employee = e.name and a.salary_component = 'Basic Salary' and b.is_active = 'Yes' and b.eligible_for_ltc = 1 "
-		
+		#frappe.throw(str(query))
 		query += " order by b.branch"
 		entries = frappe.db.sql(query, as_dict=True)
 		self.set('items', [])
 		
-
+		is_basic=frappe.db.get_single_value("HR Settings", "is_basic_salary_for_ltc")
+		ltc_amt=frappe.db.get_single_value("HR Settings", "ltc_fixed_amount")
+		prorate_ltc=frappe.db.get_single_value("HR Settings", "prorate_ltc")
+		min_mnt_raw=frappe.db.get_single_value("HR Settings", "minimum_month_required_for_ltc")
+		min_mnt = int(min_mnt_raw or 0)
+		current_date = datetime.now()
+		
 		for d in entries:
-			d.basic_pay = d.amount
+			
 			month_start = datetime.strptime(str(d.date_of_joining).split("-")[0]+"-"+str(d.date_of_joining).split("-")[1]+"-01","%Y-%m-%d")
+			months_diff = (current_date.year - d.date_of_joining.year) * 12 + (current_date.month - d.date_of_joining.month)
 			dates = pd.Period(str(month_start)).days_in_month
-			if getdate(str(int(self.fiscal_year)-1) + "-01-01") < getdate(d.date_of_joining) <  getdate(str(int(self.fiscal_year)-1) + "-12-31"):
-				if cint(str(d.date_of_joining)[8:10]) <= 15:
-					months = 12 - cint(str(d.date_of_joining)[5:7]) + 1
-				else:
-					months = 12 - cint(str(d.date_of_joining)[5:7])
-				
-				amount = d.amount
-				if flt(d.amount) > 15000:
-					amount = 15000
+			
+			d.basic_pay = d.amount
+			if is_basic==1:
+				#d.basic_pay = d.amount
+				if prorate_ltc==1:
+					if getdate(str(int(self.fiscal_year)-1) + "-01-01") < getdate(d.date_of_joining) <  getdate(str(int(self.fiscal_year)-1) + "-12-31"):
+						if cint(str(d.date_of_joining)[8:10]) <= 15:
+							months = 12 - cint(str(d.date_of_joining)[5:7]) + 1
+						else:
+							months = 12 - cint(str(d.date_of_joining)[5:7])
+						
+						amount = d.amount
+						
 
-				d.amount = round(flt((flt(months)/12.0) * amount), 2)
-				# days = relativedelta(datetime.strptime(str(d.date_of_joining).split("-")[0]+"-"+str(d.date_of_joining).split("-")[1]+"-"+str(dates),"%Y-%m-%d"),datetime.strptime(str(d.date_of_joining),"%Y-%m-%d")).days
-				# if int(days) < int(dates):
-				#     d.amount += round(flt((flt(days)/12.0/30.0) * amount), 2)
+						d.amount = round(flt((flt(months)/12.0) * amount), 2)
+						# days = relativedelta(datetime.strptime(str(d.date_of_joining).split("-")[0]+"-"+str(d.date_of_joining).split("-")[1]+"-"+str(dates),"%Y-%m-%d"),datetime.strptime(str(d.date_of_joining),"%Y-%m-%d")).days
+						# if int(days) < int(dates):
+						#     d.amount += round(flt((flt(days)/12.0/30.0) * amount), 2)
+
+					else:
+						
+						d.amount = d.amount
+
+				else:
+					if min_mnt < months_diff:
+						d.amount = d.amount
+					else:
+						continue
+
 
 			else:
-				if flt(d.amount) > 15000:
-					d.amount = 15000
+				
+				if prorate_ltc==1:
+					if getdate(str(int(self.fiscal_year)-1) + "-01-01") < getdate(d.date_of_joining) <  getdate(str(int(self.fiscal_year)-1) + "-12-31"):
+						if cint(str(d.date_of_joining)[8:10]) <= 15:
+							months = 12 - cint(str(d.date_of_joining)[5:7]) + 1
+						else:
+							months = 12 - cint(str(d.date_of_joining)[5:7])
+						
+						amount = d.amount
+						if flt(d.amount) > ltc_amt:
+							amount = ltc_amt
+
+						d.amount = round(flt((flt(months)/12.0) * amount), 2)
+						# days = relativedelta(datetime.strptime(str(d.date_of_joining).split("-")[0]+"-"+str(d.date_of_joining).split("-")[1]+"-"+str(dates),"%Y-%m-%d"),datetime.strptime(str(d.date_of_joining),"%Y-%m-%d")).days
+						# if int(days) < int(dates):
+						#     d.amount += round(flt((flt(days)/12.0/30.0) * amount), 2)
+
+					else:
+						if flt(d.amount) > ltc_amt:
+							d.amount = ltc_amt
+				else:
+					#frappe.msgprint(str(months_diff))
+					if min_mnt < months_diff:
+						d.amount=d.basic_pay
+						if d.basic_pay > ltc_amt:
+							d.amount = ltc_amt
+						
+						
+
+					else:
+						continue
+						
+					
 			row = self.append('items', {})
 			row.update(d)
 
