@@ -4,7 +4,7 @@ import frappe
 def get_workflow_state(doctype):
 	#frappe.throw(str(doctype))
 	results = frappe.db.sql("""
-        	SELECT DISTINCT wt.parent AS workflow, wt.next_state AS state
+        	SELECT DISTINCT wt.parent AS workflow, wt.next_state AS state,wt.allowed as role
         	FROM `tabWorkflow Transition` wt
         	INNER JOIN `tabWorkflow` w ON wt.parent = w.name
         	WHERE w.document_type = %s

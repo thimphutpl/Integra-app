@@ -44,9 +44,11 @@
 
 	            r.message.forEach(stateObj => {
 	                let newState = stateObj.state;
+					let role = stateObj.role
 	                if (!existingStates.has(newState)) {
 	                    let child = frm.add_child("items");
 	                    child.workflow_state = newState;
+						child.role = role;
 	                }
 	            });
 

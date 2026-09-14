@@ -2,7 +2,7 @@
 # For license information, please see license.txt
 import frappe
 from frappe.model.document import Document
-from integrasuite.integrasuite_hr.doctype.custom_notification.custom_notification import notification_status,notification_approver
+from integrasuite.integrasuite_hr.doctype.custom_notification.custom_notification import notification_status,notification_approver,rolebase_notification_status
 
 class CustomWorkflow(Document):
 	pass
@@ -14,7 +14,7 @@ def custom_validate_workflow(doc):
     # Fetch workflow items for the given doctype
     
     items = frappe.db.sql("""
-        SELECT workflow_state,type,approver_field_name,department_approver_field_name,custom_approver,send_email_field_name
+        SELECT workflow_state,type,approver_field_name,department_approver_field_name,custom_approver,send_email_field_name,role,is_sent_notification_status
         FROM `tabWorkflow State Item`
         WHERE parent = %s
     """, (doc.doctype,), as_dict=1)
@@ -26,6 +26,7 @@ def custom_validate_workflow(doc):
             #frappe.throw(str(user))
             # Owner-only rule
             if item.type=='Is Owner':
+                #frappe.throw(str(doc.workflow_state))
                 email_sender_field = item.send_email_field_name
                 email_sender= getattr(doc, email_sender_field, None)
                 if not email_sender:
@@ -62,6 +63,14 @@ def custom_validate_workflow(doc):
                    frappe.throw("Set Custoomer Approver")
                if user != item.custom_approver:
                    frappe.throw(f"Only {item.custom_approver} has permission ")
+
+            elif item.type=='Is Role Based':
+                
+                if item.is_sent_notification_status:
+                    role=item.role
+                    rolebase_notification_status(doc,role)
+                else:
+                    notification_approver(doc)
 
 def get_department_approver(field,user):
     #field='shift_request_approver'
