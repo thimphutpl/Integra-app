@@ -3,6 +3,7 @@
 import frappe
 from frappe.model.document import Document
 from integrasuite.integrasuite_hr.doctype.custom_notification.custom_notification import notification_status,notification_approver,rolebase_notification_status
+from integrasuite.custom_function.hr_custom_function import get_officiating
 
 class CustomWorkflow(Document):
 	pass
@@ -42,6 +43,14 @@ def custom_validate_workflow(doc):
 
             # Specific approver rule (user base)
             elif item.type=='Is Approver':
+                officiating=get_officiating(doc.employee)
+                #frappe.throw("here-- "+str(officiating))
+                if officiating:
+                    if user != officiating:
+                        frappe.throw(
+                            f"Only {officiating} has permission to approve this document,he is officiating")
+                    return
+
                 approver_field = item.approver_field_name
                 approver = getattr(doc, approver_field, None)
                 #frappe.throw(str(doc.owner))
