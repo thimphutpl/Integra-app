@@ -35,7 +35,7 @@ def notification_status(doc,email_sender):
 
 def notification_approver(doc):
 	#frappe.throw("doc--"+str(doc.doctype))
-
+	
 	flag="approver"
  ##
 	mail_template=get_email_template(doc,flag)

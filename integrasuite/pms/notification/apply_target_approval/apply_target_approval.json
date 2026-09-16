@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.workflow_state == \"Waiting Approval\"",
+ "creation": "2022-01-21 23:14:58.914589",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Target Set Up",
+ "enabled": 0,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Dear {{ doc.approver_name}}</p>\n\n<p><b>{{ doc.employee_name }}</b> with Employee ID <b>{{doc.employee}}</b> has applied his/her target for your approval.Please follow up with necessary action.</p>\n<p>Visit <a href=\"ttpl.erp.bt\">ttpl.erp.bt</a> to approve the target</p>\n\n\n<h3>Warm Regard</h3>",
+ "modified": "2022-01-22 01:24:06.283676",
+ "modified_by": "Administrator",
+ "module": "PMS",
+ "name": "Apply Target Approval",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "email_by_document_field": "approver"
+  }
+ ],
+ "sender": "Notifications",
+ "sender_email": "erp.ttpl@gmail.com",
+ "subject": "Notification to approve PMS Target for {{doc.employee_name}}",
+ "value_changed": "workflow_state"
+}

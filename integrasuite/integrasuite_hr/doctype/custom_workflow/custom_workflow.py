@@ -27,6 +27,7 @@ def custom_validate_workflow(doc):
             #frappe.throw(str(user))
             # Owner-only rule
             if item.type=='Is Owner':
+                #frappe.throw("h1115")
                 #frappe.throw(str(doc.workflow_state))
                 email_sender_field = item.send_email_field_name
                 email_sender= getattr(doc, email_sender_field, None)
@@ -48,7 +49,7 @@ def custom_validate_workflow(doc):
                 if officiating:
                     if user != officiating:
                         frappe.throw(
-                            f"Only {officiating} has permission to approve this document,he is officiating")
+                            f"Only {officiating} has permission to approve this document")
                     return
 
                 approver_field = item.approver_field_name

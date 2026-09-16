@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <!-- Employee icon - alternate clean ID/profile style -->
+  <rect width="512" height="512" rx="112" fill="#12B886"/>
+
+  <!-- ID card outline -->
+  <rect x="118" y="120" width="276" height="272" rx="42"
+        stroke="#FFFFFF" stroke-width="28" fill="none"/>
+
+  <!-- Employee head -->
+  <circle cx="214" cy="222" r="38"
+          stroke="#FFFFFF" stroke-width="24" fill="none"/>
+
+  <!-- Employee shoulders -->
+  <path d="M156 322
+           C170 288 190 272 214 272
+           C238 272 258 288 272 322"
+        stroke="#FFFFFF"
+        stroke-width="24"
+        stroke-linecap="round"
+        fill="none"/>
+
+  <!-- Simple info lines -->
+  <path d="M308 206H352"
+        stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+  <path d="M308 256H352"
+        stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+  <path d="M308 306H340"
+        stroke="#FFFFFF" stroke-width="22" stroke-linecap="round"/>
+</svg>
