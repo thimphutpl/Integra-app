@@ -1,0 +1,29 @@
+{
+ "attach_print": 0,
+ "channel": "Email",
+ "condition": "doc.workflow_state == \"Approved\"",
+ "creation": "2022-01-22 01:23:25.361178",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Target Set Up",
+ "enabled": 0,
+ "event": "Value Change",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Dear {{ doc.employee_name}}</p>\n\n<p><b>Your target for PMS calendar {{ doc.pms_calendar }} has been approved.</p>\n<p>Visit <a href=\"ttpl.erp.bt\">ttpl.erp.bt</a> to create Review for your Target</p>\n\n\n<h3>Warm Regard</h3>",
+ "modified": "2022-01-22 01:23:40.195609",
+ "modified_by": "Administrator",
+ "module": "PMS",
+ "name": "Target Approved",
+ "owner": "Administrator",
+ "recipients": [
+  {
+   "email_by_document_field": "owner"
+  }
+ ],
+ "sender": "Notifications",
+ "sender_email": "erp.ttpl@gmail.com",
+ "subject": "Target Approved",
+ "value_changed": "workflow_state"
+}

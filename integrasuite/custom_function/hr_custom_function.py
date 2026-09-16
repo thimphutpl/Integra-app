@@ -312,3 +312,21 @@ def is_ip_authorized():
 	else:
 		frappe.throw("xx")
 		return false
+
+def get_officiating(employee):
+	current_date=frappe.utils.nowdate()
+	empid = frappe.db.get_value("Employee", employee, "reports_to")
+	reports_to = frappe.db.get_value("Employee", empid, "user_id")
+	officiating_employee= frappe.db.get_value("Officiating Employee",
+																	filters={
+																		"employee": empid,
+																		"from_date": ["<=", current_date],
+																		"to_date": [">=", current_date]
+																	},
+																	 fieldname="officiate"
+																)
+	if officiating_employee:
+		
+		reports_to = frappe.db.get_value("Employee", officiating_employee, "user_id")
+		
+		return reports_to

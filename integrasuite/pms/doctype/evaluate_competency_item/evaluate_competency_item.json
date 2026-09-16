@@ -1,0 +1,113 @@
+{
+ "autoname": "ECI.#####",
+ "creation": "2021-03-11 09:57:42.701212",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "competency",
+  "weightage",
+  "appraisers_remark",
+  "column_break_4",
+  "self_rating",
+  "supervisor_rating",
+  "appraisees_remark",
+  "column_break_10",
+  "comment",
+  "section_break_10",
+  "description",
+  "old_rating",
+  "old_competency"
+ ],
+ "fields": [
+  {
+   "columns": 4,
+   "fieldname": "competency",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Work Competency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weightage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "appraisers_remark",
+   "fieldtype": "Small Text",
+   "label": "Appraiser's Remark",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "self_rating",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Self Rating",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "supervisor_rating",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Supervisor Rating",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appraisees_remark",
+   "fieldtype": "Small Text",
+   "label": "Appraisee's Remark",
+   "read_only": 1
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "label": "Comment"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "old_rating",
+   "fieldtype": "Float",
+   "label": "Old Rating",
+   "read_only": 1
+  },
+  {
+   "fieldname": "old_competency",
+   "fieldtype": "Data",
+   "label": "Old Work Competency",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2024-04-07 07:04:45.575535",
+ "modified_by": "Administrator",
+ "module": "PMS",
+ "name": "Evaluate Competency Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
