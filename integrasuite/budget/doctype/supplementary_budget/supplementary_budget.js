@@ -46,7 +46,7 @@ frappe.ui.form.on('Supplementary Budget', {
 		cur_frm.set_query("project", function() {
 			return {
 				"filters": [
-					["Project", "status", "=", "Onging"]
+					["Project", "status", "=", "Ongoing"]
 				]
 			}
 		});
