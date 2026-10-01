@@ -24,6 +24,7 @@ frappe.ui.form.on('Budget Reappropiation', {
 				}
 			}
 		});
+        
 
         frappe.db.get_single_value(
             "Budget Settings",
