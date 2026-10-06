@@ -143,7 +143,8 @@ add_to_apps_screen = [
 
 permission_query_conditions = {
 	# "Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-    "Travel Authorization": "integrasuite.integrasuite_hr.doctype.travel_authorization.travel_authorization.get_permission_query_conditions"
+    "Travel Authorization": "integrasuite.integrasuite_hr.doctype.travel_authorization.travel_authorization.get_permission_query_conditions",
+    "Employee Separation Clearance":"integrasuite.integrasuite_hr.doctype.employee_separation_clearance.employee_separation_clearance.get_permission_query_conditions"
 }
 
 # has_permission = {

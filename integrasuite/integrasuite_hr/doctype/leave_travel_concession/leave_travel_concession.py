@@ -17,20 +17,54 @@ class LeaveTravelConcession(Document):
 		self.validate_duplicate()
 		self.calculate_values()
 
+	# def on_submit(self):
+	# 	cc_amount = {}
+	# 	for a in self.items:
+	# 		cost_center, ba = frappe.db.get_value("Employee", a.employee, ["cost_center", "business_activity"])
+	# 		cc = str(str(cost_center) + ":" + str(ba))
+	# 		if cc in cc_amount:
+	# 			# frappe.throw(str(cc_amount))
+	# 			cc_amount[cc]['amount'] = cc_amount[cc]['amount'] + a.amount
+	# 			# cc_amount[cc]['tax'] = cc_amount[cc]['tax'] + a.tax_amount
+	# 			# cc_amount[cc]['balance_amount'] = cc_amount[cc]['balance_amount'] + a.balance_amount
+	# 		else:
+	# 			row = {"amount": a.amount}
+	# 			cc_amount[cc] = row
+	# 	# frappe.throw(str(cc_amount))
+	# 	self.post_journal_entry(cc_amount)
 	def on_submit(self):
 		cc_amount = {}
-		for a in self.items:
-			cost_center, ba = frappe.db.get_value("Employee", a.employee, ["cost_center", "business_activity"])
-			cc = str(str(cost_center) + ":" + str(ba))
-			if cc in cc_amount:
-				# frappe.throw(str(cc_amount))
-				cc_amount[cc]['amount'] = cc_amount[cc]['amount'] + a.amount
-				# cc_amount[cc]['tax'] = cc_amount[cc]['tax'] + a.tax_amount
-				# cc_amount[cc]['balance_amount'] = cc_amount[cc]['balance_amount'] + a.balance_amount
-			else:
-				row = {"amount": a.amount}
-				cc_amount[cc] = row
-		# frappe.throw(str(cc_amount))
+
+		for row in self.items:
+			if not row.employee:
+				frappe.throw("Employee is missing in LTC Details.")
+
+			cost_center = frappe.db.get_value(
+				"Employee",
+				row.employee,
+				"cost_center"
+			)
+
+			if not cost_center:
+				frappe.throw(
+					f"Cost Center is not set for Employee {row.employee}."
+				)
+
+			amount = flt(row.amount)
+
+			if not amount:
+				continue
+
+			if cost_center not in cc_amount:
+				cc_amount[cost_center] = {
+					"amount": 0
+				}
+
+			cc_amount[cost_center]["amount"] += amount
+
+		if not cc_amount:
+			frappe.throw("No valid LTC amount found for Journal Entry.")
+
 		self.post_journal_entry(cc_amount)
 
 	def validate_duplicate(self):
@@ -47,52 +81,117 @@ class LeaveTravelConcession(Document):
 		else:
 			frappe.throw("Cannot save without any employee records")
 
+	# def post_journal_entry(self, cc_amount):
+	# 	je = frappe.new_doc("Journal Entry")
+	# 	je.flags.ignore_permissions = 1 
+	# 	je.title = "LTC for " + self.branch + "(" + self.name + ")"
+	# 	je.voucher_type = 'Bank Entry'
+	# 	je.naming_series = 'Bank Payment Voucher'
+	# 	je.remark = 'LTC payment against : ' + self.name
+	# 	je.posting_date = self.posting_date
+	# 	je.branch = self.branch
+
+	# 	ltc_account = frappe.db.get_single_value("HR Accounts Settings", "ltc_account")
+	# 	if not ltc_account:
+	# 		frappe.throw("Setup LTC Account in HR Accounts Settings")
+
+	# 	#expense_bank_account = frappe.db.get_value("Branch", self.branch, "expense_bank_account")
+	# 	expense_bank_account = get_bank_account(self.branch)
+	# 	if not expense_bank_account:
+	# 		frappe.throw("Setup Expense Bank Account in Branch")
+
+	# 	for key in cc_amount.keys():
+	# 		values = key.split(":")
+	# 		amount = (cc_amount[key])
+	# 		je.append("accounts", {
+	# 				"account": ltc_account,
+	# 				"reference_type": self.doctype,
+	# 				"reference_name": self.name,
+	# 				"cost_center": values[0],
+	# 				"business_activity": values[1],
+	# 				"debit_in_account_currency": flt(amount['amount']),
+	# 				"debit": flt(amount['amount']),
+	# 			})
+		
+	# 		je.append("accounts", {
+	# 				"account": expense_bank_account,
+	# 				"cost_center": values[0],
+	# 				"business_activity": values[1],
+	# 				"credit_in_account_currency": flt(amount['amount']),
+	# 				"credit": flt(amount['amount']),
+	# 				"reference_type": self.doctype,
+	# 				"reference_name": self.name,
+	# 			})
+
+	# 	je.insert()
+
+	# 	self.db_set("journal_entry", je.name)
 	def post_journal_entry(self, cc_amount):
 		je = frappe.new_doc("Journal Entry")
-		je.flags.ignore_permissions = 1 
-		je.title = "LTC for " + self.branch + "(" + self.name + ")"
-		je.voucher_type = 'Bank Entry'
-		je.naming_series = 'Bank Payment Voucher'
-		je.remark = 'LTC payment against : ' + self.name
+		je.flags.ignore_permissions = True
+
+		je.title = f"LTC for {self.branch} ({self.name})"
+		je.voucher_type = "Bank Entry"
+		je.naming_series = "Bank Payment Voucher"
+		je.remark = f"LTC payment against: {self.name}"
 		je.posting_date = self.posting_date
 		je.branch = self.branch
 
-		ltc_account = frappe.db.get_single_value("HR Accounts Settings", "ltc_account")
+		ltc_account = frappe.db.get_single_value(
+			"HR Accounts Settings",
+			"ltc_account"
+		)
+
 		if not ltc_account:
-			frappe.throw("Setup LTC Account in HR Accounts Settings")
+			frappe.throw(
+				"Please set LTC Account in HR Accounts Settings."
+			)
 
-		#expense_bank_account = frappe.db.get_value("Branch", self.branch, "expense_bank_account")
 		expense_bank_account = get_bank_account(self.branch)
-		if not expense_bank_account:
-			frappe.throw("Setup Expense Bank Account in Branch")
 
-		for key in cc_amount.keys():
-			values = key.split(":")
-			amount = (cc_amount[key])
-			je.append("accounts", {
+		if not expense_bank_account:
+			frappe.throw(
+				f"Expense Bank Account is not configured for Branch {self.branch}."
+			)
+
+		for cost_center, values in cc_amount.items():
+			amount = flt(values.get("amount"))
+
+			if amount <= 0:
+				continue
+
+			# Debit LTC Expense
+			je.append(
+				"accounts",
+				{
 					"account": ltc_account,
 					"reference_type": self.doctype,
 					"reference_name": self.name,
-					"cost_center": values[0],
-					"business_activity": values[1],
-					"debit_in_account_currency": flt(amount['amount']),
-					"debit": flt(amount['amount']),
-				})
-		
-			je.append("accounts", {
+					"cost_center": cost_center,
+					"debit_in_account_currency": amount,
+				}
+			)
+
+			# Credit Bank
+			je.append(
+				"accounts",
+				{
 					"account": expense_bank_account,
-					"cost_center": values[0],
-					"business_activity": values[1],
-					"credit_in_account_currency": flt(amount['amount']),
-					"credit": flt(amount['amount']),
 					"reference_type": self.doctype,
 					"reference_name": self.name,
-				})
+					"cost_center": cost_center,
+					"credit_in_account_currency": amount,
+				}
+			)
 
-		je.insert()
+		if not je.accounts:
+			frappe.throw(
+				"Journal Entry cannot be created because there are no valid accounting rows."
+			)
+
+		je.insert(ignore_permissions=True)
 
 		self.db_set("journal_entry", je.name)
-
 	def on_cancel(self):
 		jv = frappe.db.get_value("Journal Entry", self.journal_entry, "docstatus")
 		if jv and jv != 2:
