@@ -1,6 +1,7 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
+from integrasuite.integrasuite_hr.doctype.custom_workflow.custom_workflow import custom_validate_workflow
 
 from frappe.utils import (
 	add_days,
@@ -27,6 +28,7 @@ class TravelClaim(Document):
 	def validate(self):
 		#self.get_advance()
 		self.calculate_amount()
+		custom_validate_workflow(self)
 		# validate_workflow_states(self)
 		# if self.workflow_state not in ("Approved","Cancelled"):
 		# 	notify_workflow_states(self)
