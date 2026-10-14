@@ -78,7 +78,10 @@ class SupplementaryBudget(Document):
 		else:
 			budget_against_field = frappe.scrub(self.budget_against)
 			budget_against = self.get(budget_against_field)
+			budget_names = set()
+			
 			for d in self.items:
+				
 				month = d.month
 				if d.amount <= 0:
 					frappe.throw("Budget Supplementary Amount should be greater than 0 for record " + str(a.idx))
@@ -95,6 +98,10 @@ class SupplementaryBudget(Document):
 					)
 				if to_account:
 					to_budget_account = frappe.get_doc("Budget Account", to_account[0].name)
+					budget_name = to_budget_account.parent
+					budget_names.add(budget_name)
+			
+					
 					if cancel:
 						total = flt(to_budget_account.budget_amount) - flt(d.amount)
 						sup_budget = flt(to_budget_account.supplementary_budget) - flt(d.amount)
@@ -115,7 +122,6 @@ class SupplementaryBudget(Document):
 						supp_details.posting_date = nowdate()
 						supp_details.fiscal_year = self.fiscal_year
 						supp_details.submit()
-					#added by Rinzin for monthly Check
 					monthly_budget = frappe.db.get_single_value("Budget Settings","monthly_budget_check")
 					to_budget_account.db_set("supplementary_budget", flt(sup_budget,2))
 					if monthly_budget:
@@ -170,11 +176,13 @@ class SupplementaryBudget(Document):
 									supplement = flt(to_budget_account.july) + flt(d.amount)
 									to_budget_account.db_set("july", flt(supplement))
 							elif month =="August":
+								
 								if cancel:
 									supplement = flt(to_budget_account.august) - flt(d.amount)
 									to_budget_account.db_set("august", flt(supplement))
 								else:
 									supplement = flt(to_budget_account.august) + flt(d.amount)
+									# frappe.throw(str(supplement))
 									to_budget_account.db_set("august", flt(supplement))
 							elif month =="September":
 								if cancel:
@@ -208,10 +216,50 @@ class SupplementaryBudget(Document):
 							frappe.throw("Please Enter Month")
 					
 					to_budget_account.db_set("budget_amount", flt(total))
+					
 				else:
 					frappe.throw(_(
 									"Budget not set for account %s under %s %s. Please check initital budget allocations"
 								 ).format(d.account,
 								 		 self.budget_against, 
 										budget_against)
+				
 								)
+
+			for budget_name in budget_names:
+				totals = frappe.db.sql(
+					"""
+					SELECT
+						COALESCE(SUM(initial_budget), 0) AS initial_total,
+						COALESCE(SUM(budget_amount), 0) AS actual_total,
+						COALESCE(SUM(supplementary_budget), 0) AS supp_total
+					FROM `tabBudget Account`
+					WHERE
+						parent = %s
+						AND parenttype = 'Budget'
+						AND parentfield = 'accounts'
+					""",
+					budget_name,
+					as_dict=True,
+				)[0]
+
+				# Update parent Budget
+				frappe.db.set_value(
+					"Budget",
+					budget_name,
+					{
+						"initial_total": flt(
+							totals.initial_total,
+							2,
+						),
+						"actual_total": flt(
+							totals.actual_total,
+							2,
+						),
+						"supp_total": flt(
+							totals.supp_total,
+							2,
+						),
+					},
+					update_modified=False,
+				)

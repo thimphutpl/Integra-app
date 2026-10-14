@@ -1,0 +1,75 @@
+{
+ "creation": "2021-03-08 11:44:14.720090",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "performance_target",
+  "quantity",
+  "quality",
+  "column_break_4",
+  "timeline",
+  "weightage",
+  "background"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "weightage",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weightage",
+   "reqd": 1
+  },
+  {
+   "columns": 1,
+   "fieldname": "quality",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quality"
+  },
+  {
+   "columns": 1,
+   "fieldname": "quantity",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "columns": 2,
+   "fieldname": "timeline",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Timeline",
+   "reqd": 1
+  },
+  {
+   "fieldname": "background",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Background"
+  },
+  {
+   "columns": 4,
+   "fieldname": "performance_target",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Performance Target",
+   "reqd": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-07-28 14:51:22.129926",
+ "modified_by": "Administrator",
+ "module": "PMS",
+ "name": "Performance Target Evaluation",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

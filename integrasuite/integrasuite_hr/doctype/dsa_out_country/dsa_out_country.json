@@ -1,43 +1,46 @@
 {
  "actions": [],
  "allow_bulk_edit": 1,
+ "allow_import": 1,
  "allow_rename": 1,
+ "autoname": "field:country",
  "creation": "2026-09-04 19:27:33.855898",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-    "country",
-    "currency",
-    "country_dsa_detail"
-   ],
-   "fields": [
-    {
-     "fieldname": "country",
-     "fieldtype": "Link",
-     "label": "Country",
-     "options": "Country",
-     "unique": 1
-    },
-    {
-     "fieldname": "currency",
-     "fieldtype": "Link",
-     "label": "Currency",
-     "options": "Currency"
-    },
-    {
-     "fieldname": "country_dsa_detail",
-     "fieldtype": "Table",
-     "label": "Country DSA Detail",
-     "options": "Country DSA Detail"
-    }
-   ],
+  "country",
+  "currency",
+  "country_dsa_detail"
+ ],
+ "fields": [
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country",
+   "unique": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "country_dsa_detail",
+   "fieldtype": "Table",
+   "label": "Country DSA Detail",
+   "options": "Country DSA Detail"
+  }
+ ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-09-04 19:27:33.855898",
+ "modified": "2026-09-18 11:05:33.394587",
  "modified_by": "Administrator",
  "module": "Integrasuite HR",
  "name": "DSA Out Country",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

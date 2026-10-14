@@ -2,6 +2,7 @@
  "actions": [],
  "allow_bulk_edit": 1,
  "allow_rename": 1,
+ "autoname": "TC-.#####",
  "creation": "2026-09-04 19:00:57.896547",
  "doctype": "DocType",
  "engine": "InnoDB",

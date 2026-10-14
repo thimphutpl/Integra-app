@@ -24,10 +24,9 @@ frappe.ui.form.on('Supplementary Budget', {
 
             return {
                 filters: {
-                    'company':company, // Example static filter
-                    // OR
-                    // 'customer_group': customer_group // If Item DocType has a customer_group field
-                    // You can add multiple filters
+                    'company':company,
+                    'is_group': 0
+                    
                 }
             };
         });
@@ -47,7 +46,7 @@ frappe.ui.form.on('Supplementary Budget', {
 		cur_frm.set_query("project", function() {
 			return {
 				"filters": [
-					["Project", "status", "=", "Opened"]
+					["Project", "status", "=", "Ongoing"]
 				]
 			}
 		});

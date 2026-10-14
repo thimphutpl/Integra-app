@@ -68,14 +68,14 @@ class OvertimeApplication(Document):
 		self.actual_amount = round(total_amount,0)
 
 	def on_cancel(self):
-		notify_workflow_states(self)
+		# notify_workflow_states(self)
 		self.check_journal()
 		# self.update_salary_structure(True)
 
 	def on_submit(self):
 		self.post_journal_entry()
 		
-		notify_workflow_states(self)
+		# notify_workflow_states(self)
 	def update_salary_structure(self, cancel=False):
 		if cancel:
 			rem_list = []

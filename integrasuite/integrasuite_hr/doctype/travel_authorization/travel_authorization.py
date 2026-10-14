@@ -25,8 +25,7 @@ from frappe.utils import (
 	nowdate,
 )
 # from erpnext.custom_workflow import validate_workflow_states, notify_workflow_states
-from integrasuite.integrasuite_hr.doctype.custom_workflow.custom_workflow import custom_validate_workflow
-
+# from integrasuite.integrasuite_hr.doctype.custom_workflow.custom_workflow import custom_validate_workflow
 
 class TravelAuthorization(Document):
 	def validate(self):
@@ -38,7 +37,7 @@ class TravelAuthorization(Document):
 		self.set_status()
 		self.make_travel_advance()
 		self.validate_estimated_amount()
-		custom_validate_workflow(self)
+		# custom_validate_workflow(self)
 		# validate_workflow_states(self)
 		# if self.workflow_state != "Approved":
 		# 	notify_workflow_states(self)
