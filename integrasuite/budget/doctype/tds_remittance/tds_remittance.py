@@ -4,9 +4,14 @@ from frappe.utils import flt, cint
 from erpnext.accounts.general_ledger import make_gl_entries
 from frappe import _
 from erpnext.controllers.accounts_controller import AccountsController
-from erpnext.accounts.doctype.journal_entry.journal_entry import get_tds_account
-from erpnext.accounts.utils import get_account_currency, get_balance_on, get_outstanding_invoices, check_clearance_date
+from erpnext.accounts.utils import get_account_currency, get_balance_on, get_outstanding_invoices
 from frappe.model.mapper import get_mapped_doc
+
+
+def check_clearance_date(doctype, docname):
+	# ported from the custom ERPNext fork; not available in ERPNext v16
+	if frappe.db.get_value(doctype, docname, "clearance_date"):
+		frappe.throw(_("Clearance Date is already set for {0} {1}. Please clear it before cancelling.").format(doctype, docname))
 
 
 class TDSRemittance(AccountsController):
@@ -59,7 +64,6 @@ class TDSRemittance(AccountsController):
 
 	def make_gl_entries(self):
 		gl_entries = []
-		tds_account = get_tds_account(self.tax_withholding_category)
 
 		if flt(self.total_tds) > 0:
 			for item in self.items:
