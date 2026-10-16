@@ -157,7 +157,7 @@ class Bonus(Document):
 		tax_account = frappe.db.get_single_value("HR Accounts Settings", "salary_tax_account")
 		#expense_bank_account = frappe.db.get_value("Branch", self.branch, "expense_bank_account")
 		expense_bank_account = get_bank_account(self.branch)
-		company_cc = frappe.db.get_value("Company", self.company,"company_cost_center")
+		company_cc = frappe.db.get_value("Company", self.company,"cost_center")
 		# default_business_activity = get_default_ba()
 
 		if not bonus_account:
@@ -208,11 +208,22 @@ class Bonus(Document):
 		self.db_set("journal_entry", je.name)
 
 	def on_cancel(self):
-		jv = frappe.db.get_value("Journal Entry", self.journal_entry, "docstatus")
-		if jv != 2:
-			frappe.throw("Can not cancel Bonus Entry without canceling the corresponding journal entry " + str(self.journal_entry))
-		else:
-			self.db_set("journal_entry", "")
+		if not self.journal_entry:
+			return
+
+		jv = frappe.db.get_value(
+			"Journal Entry",
+			self.journal_entry,
+			"docstatus"
+		)
+
+		if jv is not None and jv != 2:
+			frappe.throw(
+				"Can not cancel Bonus Entry without canceling the "
+				"corresponding journal entry " + str(self.journal_entry)
+			)
+
+		self.db_set("journal_entry", "")
 
 def get_bonus_emp_details(doc):
 	return frappe.db.sql("""select t1.employee, t1.balance_amount amount,
