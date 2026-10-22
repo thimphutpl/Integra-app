@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_bulk_edit": 1,
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:dzongkhag_name",
  "creation": "2026-10-16 08:51:14.025887",
@@ -121,7 +122,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-16 08:54:19.808842",
+ "modified": "2026-10-16 10:25:22.617948",
  "modified_by": "Administrator",
  "module": "Integrasuite HR",
  "name": "Dzongkhag",

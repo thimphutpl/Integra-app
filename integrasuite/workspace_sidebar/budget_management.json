@@ -1,0 +1,142 @@
+{
+ "app": "integrasuite",
+ "creation": "2026-10-15 20:11:10.730209",
+ "docstatus": 0,
+ "doctype": "Workspace Sidebar",
+ "header_icon": "badge-dollar-sign",
+ "idx": 0,
+ "items": [
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "home",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Home",
+   "link_to": "Budget Management",
+   "link_type": "Workspace",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "setting-gear",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget Settings",
+   "link_to": "Budget Settings",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 1,
+   "keep_closed": 1,
+   "label": "Budget",
+   "link_type": "DocType",
+   "show_arrow": 1,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget",
+   "link_to": "Budget",
+   "link_type": "DocType",
+   "navigate_to_tab": "",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Supplementary Budget",
+   "link_to": "Supplementary Budget",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "icon": "",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget Reappropiation",
+   "link_to": "Budget Reappropiation",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "indent": 1,
+   "keep_closed": 1,
+   "label": "Report",
+   "link_type": "DocType",
+   "show_arrow": 1,
+   "type": "Section Break"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget Consumption Report",
+   "link_to": "Budget Consumption Report",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Supplementary Budget Report",
+   "link_to": "Supplementary Budget Report",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget Reappropriation Report",
+   "link_to": "Budget Reappropriation Report",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 1,
+   "collapsible": 1,
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Budget Variance Report",
+   "link_to": "Budget Variance Report",
+   "link_type": "Report",
+   "show_arrow": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-15 20:47:47.992299",
+ "modified_by": "Administrator",
+ "module": "Budget",
+ "name": "Budget Management",
+ "owner": "Administrator",
+ "standard": 1,
+ "title": "Budget Management"
+}
