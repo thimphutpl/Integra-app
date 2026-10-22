@@ -4,5 +4,5 @@
 // frappe.ui.form.on("Gewog", {
 // 	refresh(frm) {
 
-// 	},
+// 	}
 // });
