@@ -1,0 +1,55 @@
+{
+ "actions": [],
+ "allow_bulk_edit": 1,
+ "allow_rename": 1,
+ "autoname": "field:budget_type",
+ "creation": "2026-09-04 19:12:23.392934",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "budget_type",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "budget_type",
+   "fieldtype": "Data",
+   "label": "Budget Type",
+   "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-04 19:13:30.473854",
+ "modified_by": "Administrator",
+ "module": "Budget",
+ "name": "Budget Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

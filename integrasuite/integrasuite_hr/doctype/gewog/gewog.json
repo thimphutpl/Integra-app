@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_bulk_edit": 1,
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:gewog",
  "creation": "2026-10-16 11:49:21.132063",
@@ -42,7 +43,7 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-16 12:01:31.618134",
+ "modified": "2026-10-16 14:24:03.445512",
  "modified_by": "Administrator",
  "module": "Integrasuite HR",
  "name": "Gewog",
