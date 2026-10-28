@@ -4,7 +4,6 @@
  "allow_rename": 1,
  "creation": "2026-09-04 18:28:36.207456",
  "doctype": "DocType",
-
  "engine": "InnoDB",
 "field_order": [
   "budget_commit_on",
